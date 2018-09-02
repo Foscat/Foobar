@@ -9,12 +9,15 @@ var questions = [
     { q: "Something jumped up and bit me right in the ___", a: "buttocks"},
     { q: "Me and Jenny goes together like peas and ___", a:"carrots"},
     { q: "There was Dallas, from ___", a:"phoenix"},
+    
 
 ];
-var userInputString = [] 
+
 var underscoreArray = []
 var score = 0;
 var guesses = 9;
+var letGuess =[]
+var wrongChar 
 
 
 
@@ -22,7 +25,7 @@ var guesses = 9;
   //Sets up base # for score and guesses left
  document.querySelector("#guesses").innerHTML = "Guesses left: " + guesses;
  document.querySelector("#score").innerHTML = "Score: " + score;
- document.querySelector("#let-guess").innerHTML = "Letters guessed:  " + userInputString;
+ document.querySelector("#let-guess").innerHTML = "Letters guessed:  ";
 
  //Randomly selects a question randomly form the question array
   var computerObject = questions[Math.floor(Math.random() * questions.length)];
@@ -36,13 +39,13 @@ var guesses = 9;
   document.querySelector('#question').innerHTML = computerObject.q;
   for (i=0; i<computerObject.a.length; i++) {
       underscoreArray.push(" _")
-      console.log(computerObject.q)
+      
       
   };
   //uts underscores in place makes sure there are no commas between 
   document.querySelector('#blank-word').innerHTML = underscoreArray.join("");
    }
-  console.log(computerObject.a)
+  
   console.log(underscoreArray)
 
 
@@ -54,12 +57,16 @@ var guesses = 9;
        if (computerObject.a[i] === userInput) {
            underscoreArray[i] = userInput
        }
-       else {
-           console.log("NO")
-       }
+       
     };
-   
-    console.log(guesses)
+    
+    if (underscoreArray != userInput) {
+        letGuess.push(userInput)
+     console.log("dang")
+    }
+    document.querySelector("#let-guess").innerHTML = "Letters guessed:  " + letGuess.join(" ");
+
+
     //puts the letters you type on the document where spaces were 
      document.querySelector('#blank-word').innerHTML = underscoreArray.join("");
      
@@ -67,7 +74,7 @@ var guesses = 9;
      console.log(string1)
      console.log(computerObject.a)
      if (string1 === computerObject.a){
-     
+        
      console.log("done")
      startover() }
      else {userInput}
