@@ -16,21 +16,22 @@ var questions = [
 var underscoreArray = []
 var score = 0;
 var guesses = 9;
-var letGuess =[]
+
 var wrongChar 
 
-
+var myArray = [];
+var myWrongCharacter =0;
+var myWrongindex = 0;
 
 
   //Sets up base # for score and guesses left
- document.querySelector("#guesses").innerHTML = "Guesses left: " + guesses;
+ 
  document.querySelector("#score").innerHTML = "Score: " + score;
- document.querySelector("#let-guess").innerHTML = "Letters guessed:  ";
+ document.querySelector("#let-guess").innerHTML = "Letters guessed:  " + myArray;
 
  //Randomly selects a question randomly form the question array
   var computerObject = questions[Math.floor(Math.random() * questions.length)];
    renderQuestion()
-   
   console.log(computerObject.q)
   console.log(computerObject.a)
 
@@ -47,7 +48,7 @@ var wrongChar
    }
   
   console.log(underscoreArray)
-
+ 
 
   //when the user presses a key, it does this 
   document.onkeyup = function(event) {
@@ -57,14 +58,29 @@ var wrongChar
        if (computerObject.a[i] === userInput) {
            underscoreArray[i] = userInput
        }
-       
+    };
+
+
+      ////WRONG KEY ENTRY TESTING ///
+
+    for(i=0; i<computerObject.a.length; i++) {
+        if (computerObject.a[i] === userInput) {
+        i = 100;}
+        myWrongCharacter=i;
     };
     
-    if (underscoreArray != userInput) {
-        letGuess.push(userInput)
-     console.log("dang")
+      console.log(myWrongCharacter);
+      
+    if (myWrongCharacter < 100) {
+        myArray[myWrongindex] = userInput;
+        myWrongindex = ++myWrongindex;
+        guesses = --guesses;
+        console.log(guesses)
+        document.querySelector("#guesses").innerHTML = "Guesses left: " + guesses;
     }
-    document.querySelector("#let-guess").innerHTML = "Letters guessed:  " + letGuess.join(" ");
+      console.log(myArray)
+   
+    document.querySelector("#let-guess").innerHTML = "Letters guessed:  " + myArray.join(" ");
 
 
     //puts the letters you type on the document where spaces were 
@@ -81,24 +97,27 @@ var wrongChar
      
     };
     
+
+
 //to loop the questions once the answers match
     function startover(){console.log("startover")
 
     //every time the game resets due to a correct question the score goes up one
+    myArray = ["", "","", "", "", "", "", "", "", ].join("");
+    guesses = 9;
+    document.querySelector("#guesses").innerHTML = "Guesses left: " + guesses;
     document.querySelector("#score").innerHTML = "Score: " + ++score
-
+    document.querySelector("#let-guess").innerHTML = "Letters guessed:  " + myArray;
     //selects new random question and makes underscores associated with new question
      computerObject = questions[Math.floor(Math.random() * questions.length)];
      underscoreArray = [];
+     myWrongindex = 0;
+     
      
      renderQuestion()
     
        
        
   };
-
-
-    
-    console.log(guesses)
   
   
