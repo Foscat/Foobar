@@ -62,18 +62,21 @@ var myWrongindex = 0;
            underscoreArray[i] = userInput
        }
     };
+    console.log(underscoreArray);
 
+      ////Wrong entry testing & duplicate wrong answer ///
 
-      ////WRONG KEY ENTRY TESTING ///
-
-    for(i=0; i<computerObject.a.length; i++) {
-        if (computerObject.a[i] === userInput) {
+    for(i=0; i<underscoreArray.length; i++) {
+        if (underscoreArray[i] === userInput) {
         i = 100;}
+        if (myArray[i] === userInput) {
+        i = 101;}
         myWrongCharacter=i;
     };
     
-      console.log(myWrongCharacter);
-      
+    console.log(myWrongCharacter);
+
+//Put wrong answers into  myArray
     if (myWrongCharacter < 100) {
         myArray[myWrongindex] = userInput;
         myWrongindex = ++myWrongindex;
@@ -81,7 +84,8 @@ var myWrongindex = 0;
         console.log(guesses)
         document.querySelector("#guesses").innerHTML = "Guesses left: " + guesses;
     }
-
+   
+    //If you run out of guesses it give a gome overe alert and restarts game
     if (guesses === 0) {
         alert("Game over!");
         endGame();
@@ -128,6 +132,8 @@ var myWrongindex = 0;
        
        
   };
+
+  //Setup for restarting the game
    function endGame(){
      score = 0; 
      guesses = 9;
