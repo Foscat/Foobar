@@ -22,6 +22,14 @@ p {
     width: 40%;
     padding: 10px;
 }
+#bar {
+    display: table;
+    margin: 0 auto;
+}
+#bedford {
+    opacity: .25;
+    
+}
 .game-info {
     text-align: center;
     float: right;
